@@ -19,29 +19,34 @@ jobs:
             echo "Update colors_enum.cs in ProjectB, ProjectC, and ProjectD"
             
             # Update colors_enum.cs in ProjectB
-            git https://github.com/kuoyuhsiang/ProjectB.git
-            cp colors_enum.cs ProjectB/
+            git clone https://github.com/kuoyuhsiang/ProjectB.git
             cd ProjectB
+            git pull
+            cp ../colors_enum.cs ./
             git config user.name "kuoyuhsiang"
             git config user.email "were1122was@gmail.com"
             git add colors_enum.cs
             git commit -m "Update enum in ProjectB"
             git push
+            cd ..
 
-            # Update colors_enum.cs in ProjectC
-            git https://github.com/kuoyuhsiang/ProjectC.git
-            cp colors_enum.cs ProjectC/
+            # Update colors_enum.cs in ProjectC (similar commands)
+            git clone https://github.com/kuoyuhsiang/ProjectC.git
             cd ProjectC
+            git pull
+            cp ../colors_enum.cs ./
             git config user.name "kuoyuhsiang"
             git config user.email "were1122was@gmail.com"
             git add colors_enum.cs
             git commit -m "Update enum in ProjectC"
             git push
-            
-            # Update colors_enum.cs in ProjectD
-            git https://github.com/kuoyuhsiang/ProjectD.git
-            cp colors_enum.cs ProjectD/
+            cd ..
+
+            # Update colors_enum.cs in ProjectD (similar commands)
+            git clone https://github.com/kuoyuhsiang/ProjectD.git
             cd ProjectD
+            git pull
+            cp ../colors_enum.cs ./
             git config user.name "kuoyuhsiang"
             git config user.email "were1122was@gmail.com"
             git add colors_enum.cs
