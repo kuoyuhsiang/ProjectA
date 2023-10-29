@@ -19,7 +19,7 @@ jobs:
             echo "Update colors_enum.cs in ProjectB, ProjectC, and ProjectD"
 
             # Clone ProjectB and update colors_enum.cs
-            git clone https://github.com/kuoyuhsiang/ProjectB.git
+            git clone git@github.com:kuoyuhsiang/ProjectB.git
             cp ProjectA/colors_enum.cs ProjectB/
             cd ProjectB
             git config user.name "kuoyuhsiang"
