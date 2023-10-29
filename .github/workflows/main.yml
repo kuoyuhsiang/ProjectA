@@ -10,6 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: Checkout Code
         uses: actions/checkout@v2
 
@@ -17,7 +26,6 @@ jobs:
         run: |
           if [ "${{ github.event.repository.name }}" == "ProjectA" ]; then
             echo "Update colors_enum.cs in ProjectB, ProjectC, and ProjectD"
-
             # Clone ProjectB and update colors_enum.cs
             git clone git@github.com:kuoyuhsiang/ProjectB.git
             cp ProjectA/colors_enum.cs ProjectB/
@@ -28,7 +36,6 @@ jobs:
             git commit -m "Update enum in ProjectB"
             git push
             cd ..
-
             # Clone ProjectC and update colors_enum.cs (repeat similar commands)
             git clone git@github.com:kuoyuhsiang/ProjectC.git
             cp ProjectA/colors_enum.cs ProjectC/
@@ -39,7 +46,6 @@ jobs:
             git commit -m "Update enum in ProjectC"
             git push
             cd ..
-
             # Clone ProjectD and update colors_enum.cs (repeat similar commands)
             git clone git@github.com:kuoyuhsiang/ProjectD.git
             cp ProjectA/colors_enum.cs ProjectD/
