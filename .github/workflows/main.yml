@@ -1,0 +1,50 @@
+name: Update Enum in ProjectA
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  update-enum:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Update Enum in Other Projects
+        run: |
+          if [ "${{ github.event.repository.name }}" == "ProjectA" ]; then
+            echo "Update colors_enum.cs in ProjectB, ProjectC, and ProjectD"
+            
+            # Update colors_enum.cs in ProjectB
+            git https://github.com/kuoyuhsiang/ProjectB.git
+            cp colors_enum.cs ProjectB/
+            cd ProjectB
+            git config user.name "kuoyuhsiang"
+            git config user.email "were1122was@gmail.com"
+            git add colors_enum.cs
+            git commit -m "Update enum in ProjectB"
+            git push
+
+            # Update colors_enum.cs in ProjectC
+            git https://github.com/kuoyuhsiang/ProjectC.git
+            cp colors_enum.cs ProjectC/
+            cd ProjectC
+            git config user.name "kuoyuhsiang"
+            git config user.email "were1122was@gmail.com"
+            git add colors_enum.cs
+            git commit -m "Update enum in ProjectC"
+            git push
+            
+            # Update colors_enum.cs in ProjectD
+            git https://github.com/kuoyuhsiang/ProjectD.git
+            cp colors_enum.cs ProjectD/
+            cd ProjectD
+            git config user.name "kuoyuhsiang"
+            git config user.email "were1122was@gmail.com"
+            git add colors_enum.cs
+            git commit -m "Update enum in ProjectD"
+            git push
+          fi
